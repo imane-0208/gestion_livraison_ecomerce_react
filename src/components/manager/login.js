@@ -1,5 +1,4 @@
 import { useState } from "react";
-// import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 // import { isExpired, decodeToken } from "react-jwt";
 
@@ -7,49 +6,71 @@ import { Link, useNavigate } from "react-router-dom";
 
 
 
-const LoginAdmin = () => {
+const LoginManager = () => {
     const navigate= useNavigate();
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    //  const [error, setError] = useState('');
+    const [email_manager, setEmail] = useState('');
+    const [password_manager, setPassword] = useState('');
+    
 
     const handleSubmit = e => {
         e.preventDefault();
 
-
-        const admin = { 
-            email,
-            password
+        const manager = { 
+            email_manager,
+            password_manager
            };
 
-        
+        //    console.log(manager);
 
            
 
 
-           fetch('http://localhost:3000/api/admin/login', {
+           fetch('http://localhost:3000/api/manager/login', {
             method: 'POST',
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(admin)
+            body: JSON.stringify(manager)
         }).then((response) => response.json())
 
         .then((result) => {
             console.log(result);
 
             console.log(result.token);
-            if(result.token){
+            if(result.token){;
                 console.log("ozekrtyuiomlkjh");
                 localStorage.setItem('token',result.token)
                 localStorage.setItem('data_user',JSON.stringify(result.data_login_admin))
-                navigate('/dashAdmin')
               
-            
+                navigate('/dashManager')
              } else {
-                 console.log("wrong");
+                 console.log("baaaaa3");
                  
              }
           });
-        
+        //  {
+        //       console.log(response.data.token);
+        //     console.log(response);
+        //       setError('response : '+response)
+        //     if(response.data.token){
+        //         localStorage.setItem('token',response.data.token)
+        //         localStorage.setItem('manager',JSON.stringify(response.data.data_login_admin))
+
+
+        //         const data_login_admin = {
+        //             email_manager: response.data.data_login_admin.email_manager,
+        //             lastname: response.data.data_login_admin.lastname,
+        //             name: response.data.data_login_admin.name,
+        //             id: response.data.data_login_admin._id
+        //         }
+
+        //         localStorage.setItem('data_user',JSON.stringify(data_login_admin))
+        //         console.log(data_login_admin);
+        //     }
+            
+        //     console.log("hhhhhhhhh");
+            
+        //   }).catch(err => {
+        //       console.log("error ; "+err);
+        //   })
     }
 
     
@@ -76,7 +97,7 @@ const LoginAdmin = () => {
                                         <form className="mt-4 pt-2" action="https://themesbrand.com/minia/layouts/index.html" onSubmit={handleSubmit}>
                                             <div className="mb-3">
                                                 <label className="form-label">Username</label>
-                                                <input type="text" className="form-control" id="username" placeholder="Enter username" value={email}
+                                                <input type="text" className="form-control" id="username" placeholder="Enter username" value={email_manager}
                                                 onChange={e => setEmail(e.target.value)}/>
                                             </div>
                                             <div className="mb-3">
@@ -86,15 +107,15 @@ const LoginAdmin = () => {
                                                     </div>
                                                     <div className="flex-shrink-0">
                                                         <div className="">
-                                                            <a href="auth-recoverpw.html" className="text-muted">Forgot password?</a>
+                                                            <a href="auth-recoverpw.html" className="text-muted">Forgot password_manager?</a>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 
                                                 <div className="input-group auth-pass-inputgroup">
-                                                    <input type="password" className="form-control" placeholder="Enter password" aria-label="Password" aria-describedby="password-addon" value={password}
+                                                    <input type="password" className="form-control" placeholder="Enter password_manager" aria-label="Password" aria-describedby="password_manager-addon" value={password_manager}
                                                         onChange={e => setPassword(e.target.value)}/>
-                                                    <button className="btn btn-light shadow-none ms-0" type="button" id="password-addon"><i className="mdi mdi-eye-outline"></i></button>
+                                                    <button className="btn btn-light shadow-none ms-0" type="button" id="password_manager-addon"><i className="mdi mdi-eye-outline"></i></button>
                                                 </div>
                                             </div>
                                             <div className="row mb-4">
@@ -134,4 +155,4 @@ const LoginAdmin = () => {
         );
 }
 
-export default LoginAdmin;
+export default LoginManager;

@@ -1,4 +1,4 @@
-const sidbar = () => {
+const SidbarManager = () => {
 
     
     return (
@@ -103,4 +103,4 @@ const sidbar = () => {
 );
 }
 
-export default sidbar;
+export default SidbarManager;

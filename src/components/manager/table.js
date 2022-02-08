@@ -2,23 +2,23 @@ import React, { useEffect, useState } from "react"
 
 
 
-const Table = () => {
+const TableRespos = () => {
 
-    const [managers, setmanagers] = useState([]);
+    const [respos, setRespos] = useState([]);
 
-    const fetchmanagers = () => {
-        fetch("http://localhost:3000/api/manager/")
+    const fetchRespos = () => {
+        fetch("http://localhost:3000/api/responsableLivraison/")
           .then(response => {
             return response.json()
           })
           .then(data => {
               console.log(data);
-            setmanagers(data.result)
+              setRespos(data.result)
           })
       }
     
       useEffect(() => {
-        fetchmanagers()
+        fetchRespos()
       }, []);
 
     //   const CreateManager = () => {
@@ -155,9 +155,9 @@ const Table = () => {
                                                         <th>Edit</th>
                                                     </tr>
                                                 </thead>
-                                                    {managers.length > 0 && (
+                                                    {respos.length > 0 && (
                                                 <tbody>
-                                                    {managers.map(manager => (
+                                                    {respos.map(manager => (
                                                     <tr key={manager.id}>
                                                             
                                                         <td   style={{width: "80px"}}>1</td>
@@ -195,4 +195,4 @@ const Table = () => {
         )
 }
 
-export default Table;
+export default TableRespos;
